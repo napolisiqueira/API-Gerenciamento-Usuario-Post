@@ -1,24 +1,16 @@
-from ..app import db
+from ..extensions import db
 import sqlalchemy as sq
-from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column
 
-
 class User(db.Model):
-    id: Mapped[int] = mapped_column(primary_key=True)
-    username: Mapped[str] = mapped_column(unique=True)
-    email: Mapped[str]
+    __tablename__ = "user"
+    id: Mapped[int] = mapped_column(sq.Integer, primary_key=True)
+    username: Mapped[str] = mapped_column(sq.String, unique=True)
+    password: Mapped[str] = mapped_column(sq.String, nullable=False)
+    email: Mapped[str] = mapped_column(sq.String)
+    activity: Mapped[bool] = mapped_column(sq.Boolean, default=True)
+    # role_id: Mapped[int] = mapped_column(sq.ForeignKey("role.id"))
+    # role: Mapped["Role"] = relationship(back_populates='user') # type: ignore
 
     def __repr__(self):
-        return f"<ID: {self.id!r}, Usuario: {self.username!r}, Email: {self.email!r}>"
-
-
-class Post(db.Model):
-    id: Mapped[int] = mapped_column(sq.Integer, primary_key=True, autoincrement=True, nullable=False)
-    title: Mapped[str] = mapped_column(sq.CHAR(100), nullable=False)
-    body: Mapped[str] = mapped_column(sq.CHAR(100), nullable=False)
-    created: Mapped[datetime] = mapped_column(sq.DateTime, server_default=sq.func.now())
-    author_id: Mapped[str] = mapped_column(sq.Integer, sq.ForeignKey("user.id"))
-
-    def __repr__(self):
-        return f"<Title: {self.title!r}, Body: {self.body!r}, Author ID: {self.author_id!r}>"
+        return f"<ID: {self.id!r}, Usuario: {self.username!r}, Email: {self.email!r}, Activity: {self.activity!r}>"
