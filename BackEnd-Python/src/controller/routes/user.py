@@ -2,7 +2,8 @@ from flask import Blueprint, request
 from http import HTTPStatus
 from ...models.User import User, db
 from sqlalchemy import inspect
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
+from ...untils import require_role
 
 app = Blueprint("user", __name__, url_prefix="/users")
 
@@ -65,11 +66,8 @@ def _delete_user(user_id: int):
 
 @app.route("/", methods=["GET", "POST"])
 @jwt_required()
+@require_role("admin")
 def handle_user():
-    user_id = get_jwt_identity()
-    user = db.get_or_404(User, user_id)
-    if user.role.name != "admin":
-        return {"message": "Acesso negado. Permissão insuficiente."}, HTTPStatus.FORBIDDEN
     if request.method == "POST":
         _created_user()
         return {"message": "Usuario criado!"}, HTTPStatus.CREATED
