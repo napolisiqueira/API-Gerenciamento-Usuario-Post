@@ -2,7 +2,7 @@ from functools import wraps
 from http import HTTPStatus
 
 from flask_jwt_extended import get_jwt_identity
-from models.User import User, db
+from src.models.User import User, db
 
 def require_role(role_name):
     def decorator(f):
@@ -16,3 +16,6 @@ def require_role(role_name):
             return f(*args, **kargs)
         return wrapped
     return decorator
+
+def eleva_quadrado(var):
+    return var ** 2

@@ -9,4 +9,11 @@ dependencies = [
     "flask-jwt-extended[asymetric-crypto,asymmetric-crypto]>=4.7.1",
     "flask-migrate>=4.1.0",
     "flask-sqlalchemy>=3.1.1",
+    "pytest>=8.4.0",
 ]
+
+# pyproject.toml
+[tool.pytest.ini_options]
+addopts = "-vvv"
+testpaths = ["tests"]
+pythonpath = ["src"]
