@@ -1,8 +1,11 @@
 import pytest
 from src.app import create_app
 from src.extensions import db
+from src.models.User import User
+from src.models.Roles import Role
 
-@pytest.fixture(scope='function')
+
+@pytest.fixture(scope="function")
 def app():
     app = create_app(
         {
@@ -14,10 +17,52 @@ def app():
         }
     )
     with app.app_context():
-      db.create_all()
-      yield app
+        db.create_all()
+        yield app
 
 
 @pytest.fixture()
 def client(app):
     return app.test_client()
+
+
+@pytest.fixture()
+def role_normal(client):
+    role = Role(name="normal")
+    db.session.add(role)
+    db.session.commit()
+
+    user = User(
+        username="Napoli-Test",
+        password="test",
+        email="napoli@test.com",
+        role_id=role.id,
+    )
+    db.session.add(user)
+    db.session.commit()
+
+    result = client.post(
+        "auth/login", json={"username": user.username, "password": user.password}
+    )
+    return result.json["access_token"]
+
+
+@pytest.fixture()
+def role_admin(client):
+    role = Role(name="admin")
+    db.session.add(role)
+    db.session.commit()
+
+    user = User(
+        username="Napoli-Test",
+        password="test",
+        email="napoli@test.com",
+        role_id=role.id,
+    )
+    db.session.add(user)
+    db.session.commit()
+
+    result = client.post(
+        "auth/login", json={"username": user.username, "password": user.password}
+    )
+    return result.json["access_token"]
