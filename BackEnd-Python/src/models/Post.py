@@ -5,9 +5,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 
 class Post(db.Model):
-    id: Mapped[int] = mapped_column(
-        sq.Integer, primary_key=True, autoincrement=True, nullable=False
-    )
+    post_id: Mapped[int] = mapped_column(sq.Integer, primary_key=True)
     title: Mapped[str] = mapped_column(sq.CHAR(100), nullable=False)
     body: Mapped[str] = mapped_column(sq.CHAR(100), nullable=False)
     created: Mapped[datetime] = mapped_column(sq.DateTime, server_default=sq.func.now())

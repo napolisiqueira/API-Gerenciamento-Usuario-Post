@@ -23,12 +23,13 @@ def create_app(test_config=None):
     from src.controller.cli import register_comands
 
     register_comands(app)
-    from src.controller.routes import user, roles
+    from src.controller.routes import user, roles, post
     from src.controller import auth
 
     app.register_blueprint(auth.app)
     app.register_blueprint(user.app)
     app.register_blueprint(roles.app)
+    app.register_blueprint(post.app)
     # from .controller.routes import post
     # app.register_blueprint(post.app)
 

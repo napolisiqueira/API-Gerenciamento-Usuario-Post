@@ -4,59 +4,39 @@ from src.models.Roles import Role
 from sqlalchemy import func
 
 
-def test_get_user(client):
-    role = Role(name="admin")
-    db.session.add(role)
-    db.session.commit()
+def test_get_user(client, role_admin):
+    # Given
+    user = db.session.execute(db.select(User)).scalar()
 
-    user = User(
-        username="Napoli-Test",
-        password="test",
-        email="napoli@test.com",
-        role_id=role.id,
-    )
-    db.session.add(user)
-    db.session.commit()
+    # When
+    response = client.get(f"/users/{user.id}",  headers={"Authorization": f"Bearer {role_admin}"})
 
-    response = client.get(f"/users/{user.id}")
+    # Then
     assert response.status_code == HTTPStatus.OK
     assert response.json == {"message": {"id": user.id, "Name": user.username}}
 
 
-def test_get_user_404(client):
-    role = Role(name="admin")
-    db.session.add(role)
-    db.session.commit()
+def test_get_user_404(client, role_admin):
+    # Given
+    user_id = 2
 
-    user_id = 1
+    # When
+    response = client.get(f"/users/{user_id}",  headers={"Authorization": f"Bearer {role_admin}"})
 
-    response = client.get(f"/users/{user_id}")
+    # Then
     assert response.status_code == HTTPStatus.NOT_FOUND
 
 
-def test_list_user(client):
-    role = Role(name="admin")
-    db.session.add(role)
-    db.session.commit()
+def test_list_user(client, role_admin):
+    # Given
+    user = db.session.execute(db.select(User)).scalar()
 
-    user = User(
-        username="Napoli-Test",
-        password="test",
-        email="napoli@test.com",
-        role_id=role.id,
-    )
-    db.session.add(user)
-    db.session.commit()
-
-    result = client.post(
-        "auth/login", json={"username": user.username, "password": user.password}
-    )
-    access_token = result.json["access_token"]
-
+    # When
     response = client.get(
-        f"/users/", headers={"Authorization": f"Bearer {access_token}"}
+        f"/users/", headers={"Authorization": f"Bearer {role_admin}"}
     )
 
+    # Then
     assert response.status_code == HTTPStatus.OK
     assert response.json == {
         "message": [
@@ -73,48 +53,22 @@ def test_list_user(client):
     }
 
 
-def test_list_user_403(client):
-    role = Role(name="normal")
-    db.session.add(role)
-    db.session.commit()
-
-    user = User(
-        username="Napoli-Test",
-        password="test",
-        email="napoli@test.com",
-        role_id=role.id,
-    )
-    db.session.add(user)
-    db.session.commit()
-
-    result = client.post(
-        "auth/login", json={"username": user.username, "password": user.password}
-    )
-    access_token = result.json["access_token"]
-
+def test_list_user_403(client, role_normal):
+    # When
     response = client.get(
-        f"/users/", headers={"Authorization": f"Bearer {access_token}"}
+        f"/users/", headers={"Authorization": f"Bearer {role_normal}"}
     )
 
+    # Then
     assert response.status_code == HTTPStatus.FORBIDDEN
+    assert response.json == {"message": "User dont have permission."}
 
 
 def test_list_user_401(client):
-    role = Role(name="normal")
-    db.session.add(role)
-    db.session.commit()
-
-    user = User(
-        username="Napoli-Test",
-        password="test",
-        email="napoli@test.com",
-        role_id=role.id,
-    )
-    db.session.add(user)
-    db.session.commit()
-
+    # When
     response = client.get(f"/users/")
 
+    # Then
     assert response.status_code == HTTPStatus.UNAUTHORIZED
 
 

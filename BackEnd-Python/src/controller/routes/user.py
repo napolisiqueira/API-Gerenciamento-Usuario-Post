@@ -76,6 +76,8 @@ def handle_user():
 
 
 @app.route("/<int:user_id>", methods=["GET", "PATCH", "DELETE"])
+@jwt_required()
+@require_role("admin")
 def get_user_by_id(user_id):
     if request.method == "GET":
         return {"message": _get_user_by_id(user_id)}, HTTPStatus.OK
