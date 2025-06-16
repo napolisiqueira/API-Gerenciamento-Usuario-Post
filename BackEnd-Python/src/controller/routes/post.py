@@ -77,6 +77,7 @@ def _delete_post(post_id: int):
 
 @app.route("/", methods=["GET", "POST", "PATCH"])
 @jwt_required()
+@require_role("admin")
 def post_and_list():
     if request.method == "POST":
         request.json
