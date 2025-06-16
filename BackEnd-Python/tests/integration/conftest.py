@@ -62,7 +62,17 @@ def role_admin(client):
     db.session.add(user)
     db.session.commit()
 
+
     result = client.post(
         "auth/login", json={"username": user.username, "password": user.password}
     )
+
+    client.post(
+        "/posts/", 
+        json={"title": "Esse é o title fixture",
+        "body": "Esse é o body fixture"},
+        headers= {"Authorization": f"Bearer {result.json['access_token']}"},
+    )
+
     return result.json["access_token"]
+
