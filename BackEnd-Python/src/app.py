@@ -3,7 +3,7 @@ from flask import Flask
 
 
 def create_app(test_config=None):
-    from src.extensions import db, migrate, jwt
+    from src.extensions import db, migrate, jwt, flask_bcrypt
     from src.models.Post import Post
     from src.models.Roles import Role
     from src.models.User import User
@@ -23,18 +23,18 @@ def create_app(test_config=None):
     from src.controller.cli import register_comands
 
     register_comands(app)
-    from src.controller.routes import user, roles, post
+    from src.controller.routes import user, roles, post, error
     from src.controller import auth
 
+    error.register_error_handlers(app)
     app.register_blueprint(auth.app)
     app.register_blueprint(user.app)
     app.register_blueprint(roles.app)
     app.register_blueprint(post.app)
-    # from .controller.routes import post
-    # app.register_blueprint(post.app)
 
     db.init_app(app)
     jwt.init_app(app)
     migrate.init_app(app, db)
+    flask_bcrypt.init_app(app)
 
     return app
