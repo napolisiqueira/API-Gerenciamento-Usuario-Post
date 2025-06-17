@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from http import HTTPStatus
 from ...models.User import User, db
 from sqlalchemy import inspect
+from src.views.users import UserSchema
 from flask_jwt_extended import jwt_required
 from ...untils import require_role
 from flask_bcrypt import bcrypt
@@ -23,19 +24,9 @@ def _created_user():
 
 def _list_user():
     query = db.select(User)
-    result = db.session.execute(query).scalars()
-    return [
-        {
-            "id": results.id,
-            "Name": results.username,
-            "email": results.email,
-            "role": {
-                "id": results.role.id ,
-                "name": results.role.name
-            },
-        }
-        for results in result
-    ]
+    users = db.session.execute(query).scalars()
+    users_schema = UserSchema(many=True)
+    return users_schema.dump(users)
 
 
 def _get_user_by_id(user_id: int):

@@ -3,7 +3,7 @@ from flask import Flask
 
 
 def create_app(test_config=None):
-    from src.extensions import db, migrate, jwt, flask_bcrypt
+    from src.extensions import db, migrate, jwt, flask_bcrypt, ma
     from src.models.Post import Post
     from src.models.Roles import Role
     from src.models.User import User
@@ -36,5 +36,6 @@ def create_app(test_config=None):
     jwt.init_app(app)
     migrate.init_app(app, db)
     flask_bcrypt.init_app(app)
+    ma.init_app(app)
 
     return app

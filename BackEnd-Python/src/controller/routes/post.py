@@ -101,6 +101,5 @@ def update_and_delete(post_id):
     elif request.method == "DELETE":
         _delete_post(post_id)
         return {"message": "Post deleted."}, HTTPStatus.ACCEPTED
-     
     else:
         return {"error": "Method not allowed"}, HTTPStatus.METHOD_NOT_ALLOWED
