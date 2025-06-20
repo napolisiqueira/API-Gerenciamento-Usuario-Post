@@ -1,10 +1,8 @@
 # FlaskAPI
 
-![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg) ![Flask](https://img.shields.io/badge/flask-2.0+-green.svg) ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
 
-![Flask](https://img.shields.io/badge/flask-2.0+-green.svg)
-
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)Uma API RESTful desenvolvida com Flask, SQLAlchemy e autenticação JWT, para gerenciamento de posts e usuários. Ideal para aprendizado e testes de desenvolvimento de APIs em Python.
+Uma API RESTful desenvolvida com Flask, SQLAlchemy e autenticação JWT, para gerenciamento de posts e usuários. Ideal para aprendizado e testes de desenvolvimento de APIs em Python.
 
 ## 📋 Índice
 
