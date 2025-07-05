@@ -183,25 +183,25 @@ Content-Type: application/json
 └── README.md             # Documentação do projeto
 </code></pre>
 
-        <h2 id="contribuição">🤝 Contribuição</h2>
-        <p>Contribuições são bem-vindas! Siga os passos abaixo para contribuir:</p>
-        <ol>
-            <li>Fork o repositório.</li>
-            <li>Crie uma branch para sua feature (<code>git checkout -b feature/nova-funcionalidade</code>).</li>
-            <li>Commit suas mudanças (<code>git commit -m "Adiciona nova funcionalidade"</code>).</li>
-            <li>Push para a branch (<code>git push origin feature/nova-funcionalidade</code>).</li>
-            <li>Abra um Pull Request.</li>
-        </ol>
-        <p>Por favor, abra uma issue para discutir grandes mudanças antes de implementá-las.</p>
+<h2 id="contribuição">🤝 Contribuição</h2>
+<p>Contribuições são bem-vindas! Siga os passos abaixo para contribuir:</p>
+<ol>
+    <li>Fork o repositório.</li>
+    <li>Crie uma branch para sua feature (<code>git checkout -b feature/nova-funcionalidade</code>).</li>
+    <li>Commit suas mudanças (<code>git commit -m "Adiciona nova funcionalidade"</code>).</li>
+    <li>Push para a branch (<code>git push origin feature/nova-funcionalidade</code>).</li>
+    <li>Abra um Pull Request.</li>
+</ol>
+<p>Por favor, abra uma issue para discutir grandes mudanças antes de implementá-las.</p>
 
-        <h2 id="licença">📜 Licença</h2>
-        <p>Este projeto está licenciado sob a MIT License.</p>
+<h2 id="licença">📜 Licença</h2>
+<p>Este projeto está licenciado sob a MIT License.</p>
 
-        <h2 id="contato">📬 Contato</h2>
-        <ul>
-            <li>GitHub: <a href="https://github.com/napolisiqueira">napolisiqueira</a></li>
-            <li>Email: (adicione seu email se desejar)</li>
-        </ul>
-    </div>
+<h2 id="contato">📬 Contato</h2>
+<ul>
+    <li>GitHub: <a href="https://github.com/napolisiqueira">napolisiqueira</a></li>
+    <li>Email: (adicione seu email se desejar)</li>
+</ul>
+</div>
 </body>
 </html>
