@@ -1,58 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlaskAPI</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        pre, code {
-            background: #f7f7f7;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .badge {
-            margin-right: 5px;
-        }
-    </style>
-</head>
 <body>
     <div class="container">
         <h1>FlaskAPI</h1>
-        <p>
-            <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python" class="badge">
-            <img src="https://img.shields.io/badge/flask-2.0+-green.svg" alt="Flask" class="badge">
-            <img src="https://img.shields.io/badge/status-em%20desenvolvimento-orange" alt="Status" class="badge">
-        </p>
+<p>
+    <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python 3.8+" class="badge">
+    <img src="https://img.shields.io/badge/flask-2.0+-green.svg" alt="Flask 2.0+" class="badge">
+    <img src="https://img.shields.io/badge/status-em%20desenvolvimento-orange" alt="Status: Em desenvolvimento" class="badge">
+</p>
         <p>Uma API RESTful desenvolvida com Flask, SQLAlchemy e autenticação JWT, para gerenciamento de posts e usuários. Ideal para aprendizado e testes de desenvolvimento de APIs em Python.</p>
 
   <h2>📋 Índice</h2>
